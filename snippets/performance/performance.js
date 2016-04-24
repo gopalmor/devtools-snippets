@@ -10,6 +10,10 @@
   var timings = [];
 
   timings.push({
+    label: "Time to first byte",
+    time: t.responseStart - t.navigationStart + "ms"
+  });
+  timings.push({
     label: "Time Until Page Loaded",
     time: t.loadEventEnd - t.navigationStart + "ms"
   });
@@ -56,9 +60,13 @@
       label: "Connection Info",
       time: lt.connectionInfo
     });
-    timings.push({
+      timings.push({
+      label: "First paint",
+      time: Math.ceil((lt.firstPaintTime  - lt.startLoadTime) * 1000) + "ms"
+    });
+      timings.push({
       label: "First paint after Document load",
-      time: Math.ceil(lt.firstPaintTime - lt.finishDocumentLoadTime) + "ms"
+      time: Math.ceil((lt.firstPaintAfterLoadTime  - lt.startLoadTime) * 1000) + "ms"
     });
   }
 
